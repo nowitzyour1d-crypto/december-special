@@ -1,0 +1,40 @@
+/* Six small keepsake scenes, woven between the words, music and birthday wish. */
+.photo-chapter{position:relative;padding:80px max(6%,calc((100vw - 1180px)/2)) 100px;overflow:hidden}
+.chapter-heading{text-align:center;max-width:620px;margin:0 auto 55px;position:relative;z-index:1}
+.chapter-heading .eyebrow{color:var(--rose);margin-bottom:14px}
+.chapter-heading h2{font-size:clamp(38px,5vw,64px);margin:12px 0 16px}
+.chapter-heading>p:not(.eyebrow){font-size:12px;color:var(--muted)}
+.chapter-flourish{display:block;color:#b66b82;font:36px Georgia;margin-bottom:12px}
+.chapter-photos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(12px,2vw,28px);align-items:center;max-width:1180px;margin:0 auto}
+.memory-button{position:relative;display:block;width:100%;padding:0;border:0;background:transparent;color:inherit;transform:rotate(var(--tilt,0deg));animation:memoryFloat var(--duration,8s) ease-in-out infinite;animation-delay:var(--delay,0s);transition:filter .3s,transform .3s}
+.memory-button:hover,.memory-button:focus-visible{z-index:2;filter:drop-shadow(0 12px 15px #74465a25);transform:translateY(-8px) rotate(0deg)}
+.memory-button .polaroid{padding:9px 9px 27px;transform:none}
+.memory-button img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;background:#f3e7e7}
+.memory-button[data-wide="true"]{transform:rotate(calc(var(--tilt,0deg)*.55)) translateY(-12px)}
+.memory-number{position:absolute;right:10px;bottom:7px;font:8px var(--sans);letter-spacing:.13em;color:#9b7884}
+.chapter-love{display:block;text-align:center;margin-top:52px;color:#a76a7e;font:italic 19px var(--serif)}
+.clothesline{background:linear-gradient(180deg,#fbf3f0,#f7e9e9)}
+.clothesline:before{content:"";position:absolute;left:4%;right:4%;top:47%;border-top:1px dashed #cda7b3;transform:rotate(-2deg)}
+.clothesline .memory-button:nth-child(odd){margin-top:18px}
+.scrapbook{background:#fffaf6}
+.scrapbook .chapter-photos{padding:20px;background:radial-gradient(#d9b7c0 1px,transparent 1px);background-size:18px 18px}
+.scrapbook .memory-button .polaroid{box-shadow:0 8px 24px #6e4c5818}
+#memories.photo-chapter.editorial{padding-top:40px;background:#fcf7f3}
+#memories.editorial .center-heading{margin-bottom:45px}
+#memories.editorial .memory-grid{max-width:1180px;margin-left:auto;margin-right:auto}
+#memories.editorial .memory-button:nth-child(3n+2){transform:translateY(26px) rotate(var(--tilt))}
+.rose-garden{background:radial-gradient(ellipse at 10% 20%,#f3dfe5 0,transparent 38%),radial-gradient(ellipse at 90% 80%,#f1e3d8 0,transparent 40%),#fcf7f3}
+.rose-garden .chapter-photos{gap:clamp(10px,2.5vw,32px)}
+.rose-garden .memory-button:nth-child(2),.rose-garden .memory-button:nth-child(4){margin-top:35px}
+.wish-ribbon{background:#f8e9ec}
+.wish-ribbon:before,.wish-ribbon:after{content:"♡  ✧  ♡  ✧  ♡  ✧  ♡  ✧  ♡";display:block;text-align:center;color:#c18b9c;letter-spacing:.45em;font:italic 15px var(--serif);padding:10px}
+.wish-ribbon .chapter-photos{padding:25px 0}
+.filmstrip{background:#4d303d;color:#f9edf0}
+.filmstrip .chapter-heading>p:not(.eyebrow){color:#e4cbd3}
+.filmstrip .chapter-heading h2{color:#fff6f5}
+.filmstrip .chapter-photos{gap:12px;padding:18px 12px;background:repeating-linear-gradient(90deg,#f2dfe5 0 7px,transparent 7px 20px) top/100% 8px no-repeat,repeating-linear-gradient(90deg,#f2dfe5 0 7px,transparent 7px 20px) bottom/100% 8px no-repeat}
+.filmstrip .memory-button .polaroid{background:#fffaf7}
+.filmstrip .chapter-love{color:#e9c4d0}
+@keyframes memoryFloat{0%,100%{translate:0 0}50%{translate:0 -7px}}
+@media(max-width:850px){.photo-chapter{padding:70px 5% 82px}.chapter-photos{grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 18px}.chapter-heading{margin-bottom:40px}.chapter-heading h2{font-size:46px}.chapter-love{margin-top:40px}}
+@media(max-width:600px){.photo-chapter{padding:62px 6% 70px}.chapter-photos{grid-template-columns:repeat(2,minmax(0,1fr));gap:42px 18px}.chapter-heading h2{font-size:42px}.chapter-heading>p:not(.eyebrow){font-size:11px}.memory-button .polaroid{padding:7px 7px 23px}.memory-button .polaroid figcaption{font-size:14px}.memory-number{font-size:6px}.chapter-flourish{font-size:30px}.chapter-love{font-size:17px}.clothesline:before{top:48%}.filmstrip .chapter-photos{gap:12px}}

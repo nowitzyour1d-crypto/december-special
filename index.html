@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="theme-color" content="#f8e9ec">
+<title>December Special · For you, always</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="photo-chapters.css">
+<script src="config.js" defer></script><script src="photos.js" defer></script><script src="script.js" defer></script>
+
+<style>
+.candle .flame { transition: opacity .55s ease, transform .55s ease; }
+.candle.out .flame { opacity: 0; transform: translateY(-12px) scale(.2); pointer-events: none; }
+#wishButton:disabled { opacity: .65; cursor: wait; }
+</style>
+
+</head>
+<body class="locked">
+<div class="grain" aria-hidden="true"></div><div id="petals" aria-hidden="true"></div>
+<section id="gate" class="gate" aria-label="Private birthday invitation">
+ <div class="gate-ornament">✧</div><p class="eyebrow">A LITTLE SECRET, JUST FOR YOU</p>
+ <div class="envelope" aria-hidden="true"><span>♡</span></div>
+ <h1>December<br><em>Special.</em></h1><p class="gate-copy">Some things are too precious for the whole world.<br>This little world is only for you.</p>
+ <form id="unlockForm"><label for="password">The key to your little world</label><div class="password-row"><input class="input" id="password" type="password" inputmode="numeric" autocomplete="current-password" maxlength="32" placeholder="Enter our secret" required aria-describedby="gateError"><button class="btn" type="submit" aria-label="Open your surprise">↗</button></div><p id="gateError" role="status"></p></form>
+ <p class="gate-sign">with all my love, <i>your Mona</i></p><small id="previewNotice" hidden>Design preview · the password screen is not secure hosting.</small>
+</section>
+<main id="world" hidden>
+ <header class="navigation"><a class="wordmark" href="#home">december <i>special</i><span>✧</span></a><a href="#memories" class="nav-note">a little world, only yours ↗</a><button id="soundToggle" class="sound btn" aria-label="Pause music"><span class="equalizer"><i></i><i></i><i></i></span><span id="soundText">sound on</span></button></header>
+ <section class="hero" id="home">
+  <div class="hero-flower flower-one" aria-hidden="true">✿</div><div class="hero-flower flower-two" aria-hidden="true">✿</div>
+  <p class="eyebrow hero-overline">14 DECEMBER 2027 &nbsp; · &nbsp; YOUR DAY, MY FAVOURITE</p>
+  <div class="hero-composition"><figure class="polaroid hero-photo left-photo"><img data-photo="2" alt="A favourite memory of you"><figcaption>my favourite view ♡</figcaption></figure>
+   <div class="hero-title"><span class="handwritten">a birthday love letter</span><h1>The world is<br>prettier<br><em>with you.</em></h1><div class="title-spark">✧</div><p>Happy 20th birthday, my love.<br>আজকের দিনটা শুধু তোমার।</p><a class="pill btn" href="#letter">I made you a little something <span>↓</span></a></div>
+   <figure class="polaroid hero-photo right-photo"><img data-photo="8" alt="You holding a bouquet of flowers"><figcaption>you, in full bloom</figcaption></figure>
+  </div><div class="hero-bottom"><span>MADE OF LITTLE MOMENTS & BIG FEELINGS</span><a href="#letter">scroll into our little world ↓</a><span>WISHING BY YOUR MONA</span></div>
+ </section>
+ <div class="ribbon" aria-hidden="true"><div>only you ♡ &nbsp; শুভ জন্মদিন &nbsp; ✧ &nbsp; my favourite person &nbsp; ♡ &nbsp; fourteen december &nbsp; ✧ &nbsp; only you ♡ &nbsp; শুভ জন্মদিন &nbsp; ✧ &nbsp; my favourite person &nbsp; ♡ &nbsp; fourteen december &nbsp; ✧ &nbsp;</div></div>
+ <section id="letter" class="letter-section section-pad">
+  <div class="section-intro reveal"><p class="eyebrow">01 / WORDS FROM MY HEART</p><h2>A little English.<br>A little বাংলা.<br><em>All my love.</em></h2><p>Because one language was never quite enough.</p><div class="ink-heart">♡</div></div>
+  <article class="love-letter reveal"><span class="letter-stamp">FOR YOU<br>♡<br>ALWAYS</span><p class="handwritten">To my favourite person,</p><h3 lang="bn">শুভ জন্মদিন, আমার ভালোবাসা।</h3><p class="roman">Shubho jonmodin, amar bhalobasha.</p><p>Happy birthday, my love. If I could wrap a feeling and give it to you, it would be the peace of knowing that you are loved—on your bright days, your quiet days, and every day in between.</p><div class="letter-rule"></div><h3 lang="bn">তোমার হাসিতেই আমার পৃথিবীটা সুন্দর।</h3><p class="roman">Tomar hashitei amar prithibita shundor.</p><p>Your smile makes my world beautiful. May this new chapter bring you soft mornings, brave dreams, and a thousand little reasons to smile.</p><p class="letter-personal" id="personalLine">From our smallest conversations to the moments I wish could last forever, you make ordinary days feel special.</p><p class="letter-sign">Always cheering for you,<br><span class="handwritten">your Mona ♡</span></p></article>
+ </section>
+ <section id="memories" class="memories section-pad"><div class="center-heading reveal"><p class="eyebrow">THE WAY I SEE YOU / 03</p><h2>In a world full of things,<br>I keep choosing <em>you.</em></h2><p>Five favourite frames.<br>A little pause in our love letter.</p><span class="tiny-note">TAP ANY PHOTO TO HOLD THE MOMENT A LITTLE LONGER ↗</span></div><div class="memory-grid" id="memoryGrid"></div></section>
+ <section id="musicMoment" class="music-section"><div class="music-orbit orbit-one"></div><div class="music-orbit orbit-two"></div><div class="music-inner reveal"><p class="eyebrow">03 / SOME FEELINGS SOUND LIKE A SONG</p><span class="music-heart">♡</span><h2>If my heart had<br>a <em>soundtrack.</em></h2><div class="glass-poem" id="glassPoem"><span class="glass-shine"></span><p lang="bn">তুমি আছো বলেই,<br>সাধারণ দিনগুলোও গল্প হয়ে যায়।</p><p class="roman">Tumi achho bolei,<br>shadharon dingulo-o golpo hoye jay.</p><p class="poem-meaning">Because you are here,<br>even ordinary days become a story.</p><span class="original-label">ORIGINAL WORDS FOR YOU · NOT SONG LYRICS</span></div><div class="track"><div class="record" aria-hidden="true"><span>♡</span></div><div><strong>Alfaaz</strong><span>Hamza Malik × Zain Zohaib</span></div><button class="btn track-play" id="trackPlay" aria-label="Pause Alfaaz">Ⅱ</button></div><p class="music-note">A little softer everywhere. A little closer to the heart here.<br><span id="audioStatus" role="status"></span></p></div></section>
+ <section id="wish" class="wish-section section-pad"><div class="center-heading reveal"><p class="eyebrow">04 / A WISH, JUST FOR YOU</p><h2>Twenty candles.<br><em>Endless wishes.</em></h2><p>Close your eyes. Think of something beautiful.<br>I'll be here, wishing it comes true for you.</p></div><div class="cake-scene reveal"><span class="cake-star s1">✧</span><span class="cake-star s2">✦</span><span class="cake-star s3">✧</span><div class="cake"><div class="candles"><span class="candle"><i class="flame"></i></span><span class="candle"><i class="flame"></i></span><span class="candle"><i class="flame"></i></span><span class="candle"><i class="flame"></i></span><span class="candle"><i class="flame"></i></span></div><div class="cake-top">20</div><div class="cake-layer"><span>♡</span><span>♡</span><span>♡</span></div><div class="cake-bottom"></div><div class="cake-plate"></div></div></div><button id="wishButton" class="pill btn">Make a wish & blow the candles ✧</button><p class="wish-result" id="wishResult" aria-live="polite">A little birthday magic is waiting.</p></section>
+ <section class="last-letter section-pad"><div class="final-rose" aria-hidden="true">❀</div><p class="eyebrow reveal">ONE LAST THING, BEFORE YOU GO</p><h2 class="reveal" lang="bn">আজ, কাল, প্রতিদিন—<br><em>তুমিই আমার প্রিয়।</em></h2><p class="roman reveal">Aaj, kal, protidin—tumii amar priyo.</p><p class="reveal">Today, tomorrow, every day—you're my favourite.</p><button id="openNote" class="note-button btn reveal">A tiny note for you <span>♡</span></button><div id="secretNote" class="secret-note" hidden><p>Growing older is a little less scary when someone is cheering for you. So here is your reminder: chase your dreams, take your time, and never forget how much you matter.</p><p lang="bn">তোমার সব স্বপ্ন একদিন সত্যি হোক।</p><p class="roman">Tomar shob shopno ekdin shotyi hok.</p><span class="handwritten">I'm in your corner. Always. — Mona</span></div><div class="final-sign reveal"><span>WISHING BY</span><strong>your Mona</strong><i>with a heart full of you ♡</i></div></section>
+ <footer><a href="#home">back to the beginning ↑</a><span>DECEMBER SPECIAL · 14.12.2027</span><small>A beautiful beginning · 14.12.2006</small></footer>
+</main>
+<dialog id="lightbox"><button class="close btn" id="closeLightbox" aria-label="Close photo">×</button><button class="lb-prev btn" id="prevPhoto" aria-label="Previous photo">←</button><figure><img id="fullPhoto" alt=""><figcaption id="fullCaption"></figcaption></figure><button class="lb-next btn" id="nextPhoto" aria-label="Next photo">→</button></dialog>
+<audio id="music" src="assets/alfaaz.mp3" loop preload="none"></audio><div id="celebration" aria-hidden="true"></div>
+</body></html>
