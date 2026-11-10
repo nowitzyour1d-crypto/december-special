@@ -19,8 +19,7 @@ function buildGallery(){
   {existing:true,style:'editorial',start:10},
   {after:'#musicMoment',style:'rose-garden',kicker:'A ROSE FOR MY ROSE / 04',title:'Some flowers look <em>like you.</em>',note:'Soft, a little magical, and impossible not to love.',start:15},
   {after:'#wish',style:'wish-ribbon',kicker:'TIED WITH ALL MY LOVE / 05',title:'Five little keepsakes.<br>A thousand <em>birthday wishes.</em>',note:'Little pieces of you, tied together with a pink ribbon.',start:20},
-  
- chapters.forEach(chapter=>{
+  chapters.forEach(chapter=>{
   let grid;
   if(chapter.existing){grid=$('#memoryGrid');$('#memories').classList.add('photo-chapter','editorial');}
   else{const section=document.createElement('section');section.className=`photo-chapter ${chapter.style}`;section.innerHTML=`<div class="chapter-heading reveal"><span class="chapter-flourish" aria-hidden="true">✧</span><p class="eyebrow">${chapter.kicker}</p><h2>${chapter.title}</h2><p>${chapter.note}</p></div><div class="chapter-photos" aria-label="Five decorated photo memories"></div><span class="chapter-love" aria-hidden="true">made of you & little things ♡</span>`;$(chapter.after).after(section);grid=section.querySelector('.chapter-photos');}
