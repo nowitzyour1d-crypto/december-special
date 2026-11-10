@@ -21,3 +21,12 @@
 .lyric-line{width:100%;padding:0 8px;opacity:0;transform:translateY(38px);filter:blur(2px);transition:opacity .38s ease,transform .48s cubic-bezier(.2,.7,.25,1),filter .38s ease}
 .lyric-line.arrived{opacity:1;transform:translateY(0);filter:blur(0)}
 @media(prefers-reduced-motion:reduce){.lyric-line{transition:none;transform:none;filter:none}}
+/* White neon glow for lyrics only */
+.music-section .lyric-line {
+  color: #ffffff;
+  text-shadow:
+    0 0 3px #ffffff,
+    0 0 8px #ffffff,
+    0 0 16px #ffffff,
+    0 0 28px #f7d9ff;
+}
