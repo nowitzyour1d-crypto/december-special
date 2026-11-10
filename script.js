@@ -19,8 +19,7 @@ function buildGallery(){
   {existing:true,style:'editorial',start:10},
   {after:'#musicMoment',style:'rose-garden',kicker:'A ROSE FOR MY ROSE / 04',title:'Some flowers look <em>like you.</em>',note:'Soft, a little magical, and impossible not to love.',start:15},
   {after:'#wish',style:'wish-ribbon',kicker:'TIED WITH ALL MY LOVE / 05',title:'Five little keepsakes.<br>A thousand <em>birthday wishes.</em>',note:'Little pieces of you, tied together with a pink ribbon.',start:20},
-  {after:'.last-letter',style:'filmstrip',kicker:'AND ALL THE MOMENTS STILL TO COME / 06',title:'My favourite story?<br><em>You. Always you.</em>',note:'Not the end. Just another beautiful little beginning.',start:25}
- ];
+  
  chapters.forEach(chapter=>{
   let grid;
   if(chapter.existing){grid=$('#memoryGrid');$('#memories').classList.add('photo-chapter','editorial');}
