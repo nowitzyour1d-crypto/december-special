@@ -30,3 +30,39 @@
     0 0 16px #ffffff,
     0 0 28px #f7d9ff;
 }
+/* Balanced layout: The Way I See You / 03 */
+#memories.editorial .memory-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+#memories.editorial .memory-grid > .memory-button {
+  grid-column: span 2;
+}
+
+#memories.editorial .memory-grid > .memory-button:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+#memories.editorial .memory-grid > .memory-button:nth-child(5) {
+  grid-column: 4 / span 2;
+}
+
+@media (max-width: 850px) {
+  #memories.editorial .memory-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  #memories.editorial .memory-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  #memories.editorial .memory-grid > .memory-button:nth-child(4) {
+    grid-column: 3 / span 2;
+  }
+
+  #memories.editorial .memory-grid > .memory-button:nth-child(5) {
+    grid-column: 2 / span 2;
+  }
+}
