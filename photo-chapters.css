@@ -69,3 +69,37 @@
   .clothesline .chapter-photos .memory-button:nth-child(5),
   .rose-garden .chapter-photos .memory-button:nth-child(1) { margin-top: 10px; }
 }
+/* Natural scattered photo positions */
+.photo-chapter .chapter-photos > .memory-button:nth-child(2) {
+  position: relative;
+  top: 14px;
+}
+
+.photo-chapter .chapter-photos > .memory-button:nth-child(5) {
+  position: relative;
+  top: -9px;
+}
+
+.clothesline .chapter-photos > .memory-button:nth-child(4) {
+  top: 11px;
+}
+
+.scrapbook .chapter-photos > .memory-button:nth-child(1) {
+  top: -8px;
+}
+
+.rose-garden .chapter-photos > .memory-button:nth-child(3) {
+  top: 16px;
+}
+
+.wish-ribbon .chapter-photos > .memory-button:nth-child(4) {
+  top: -10px;
+}
+
+#memories.editorial .memory-grid > .memory-button:nth-child(3) {
+  top: 14px;
+}
+
+#memories.editorial .memory-grid > .memory-button:nth-child(5) {
+  top: -8px;
+}
