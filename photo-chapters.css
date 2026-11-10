@@ -38,3 +38,34 @@
 @keyframes memoryFloat{0%,100%{translate:0 0}50%{translate:0 -7px}}
 @media(max-width:850px){.photo-chapter{padding:70px 5% 82px}.chapter-photos{grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 18px}.chapter-heading{margin-bottom:40px}.chapter-heading h2{font-size:46px}.chapter-love{margin-top:40px}}
 @media(max-width:600px){.photo-chapter{padding:62px 6% 70px}.chapter-photos{grid-template-columns:repeat(2,minmax(0,1fr));gap:42px 18px}.chapter-heading h2{font-size:42px}.chapter-heading>p:not(.eyebrow){font-size:11px}.memory-button .polaroid{padding:7px 7px 23px}.memory-button .polaroid figcaption{font-size:14px}.memory-number{font-size:6px}.chapter-flourish{font-size:30px}.chapter-love{font-size:17px}.clothesline:before{top:48%}.filmstrip .chapter-photos{gap:12px}}
+/* Natural, lightly scattered photo placement */
+.clothesline .chapter-photos .memory-button:nth-child(2) { margin-top: 34px; }
+.clothesline .chapter-photos .memory-button:nth-child(4) { margin-top: -8px; }
+.clothesline .chapter-photos .memory-button:nth-child(5) { margin-top: 42px; }
+
+.scrapbook .chapter-photos .memory-button:nth-child(1) { margin-top: -12px; }
+.scrapbook .chapter-photos .memory-button:nth-child(3) { margin-top: 22px; }
+.scrapbook .chapter-photos .memory-button:nth-child(5) { margin-top: -5px; }
+
+.rose-garden .chapter-photos .memory-button:nth-child(1) { margin-top: 12px; }
+.rose-garden .chapter-photos .memory-button:nth-child(3) { margin-top: 48px; }
+.rose-garden .chapter-photos .memory-button:nth-child(5) { margin-top: 8px; }
+
+.wish-ribbon .chapter-photos .memory-button:nth-child(2) { margin-top: 28px; }
+.wish-ribbon .chapter-photos .memory-button:nth-child(4) { margin-top: -8px; }
+
+@media (max-width: 600px) {
+  .clothesline .chapter-photos .memory-button:nth-child(2),
+  .scrapbook .chapter-photos .memory-button:nth-child(3),
+  .rose-garden .chapter-photos .memory-button:nth-child(3),
+  .wish-ribbon .chapter-photos .memory-button:nth-child(2) { margin-top: 16px; }
+
+  .clothesline .chapter-photos .memory-button:nth-child(4),
+  .scrapbook .chapter-photos .memory-button:nth-child(1),
+  .scrapbook .chapter-photos .memory-button:nth-child(5),
+  .rose-garden .chapter-photos .memory-button:nth-child(5),
+  .wish-ribbon .chapter-photos .memory-button:nth-child(4) { margin-top: 0; }
+
+  .clothesline .chapter-photos .memory-button:nth-child(5),
+  .rose-garden .chapter-photos .memory-button:nth-child(1) { margin-top: 10px; }
+}
