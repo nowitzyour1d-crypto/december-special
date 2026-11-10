@@ -94,3 +94,102 @@ audio.addEventListener('play',()=>{cancelAnimationFrame(lyricFrame);lyricTick();
 audio.addEventListener('pause',()=>{cancelAnimationFrame(lyricFrame);syncLyrics();});
 ['timeupdate','seeked','loadedmetadata','ended'].forEach(name=>audio.addEventListener(name,syncLyrics));
 setSoundState(false);
+/* One continuous red thread through the memories */
+function createStoryThread() {
+  document.querySelector('.story-thread')?.remove();
+
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('class', 'story-thread');
+  svg.setAttribute('aria-hidden', 'true');
+
+  const defs = document.createElementNS(ns, 'defs');
+  defs.innerHTML = `
+    <linearGradient id="thread-red-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8b101d"/>
+      <stop offset="45%" stop-color="#d51f32"/>
+      <stop offset="75%" stop-color="#a20d22"/>
+      <stop offset="100%" stop-color="#f06a70"/>
+    </linearGradient>`;
+  svg.append(defs);
+
+  const makePath = (className) => {
+    const path = document.createElementNS(ns, 'path');
+    path.setAttribute('class', className);
+    svg.append(path);
+    return path;
+  };
+
+  const shadow = makePath('thread-shadow');
+  const main = makePath('thread-main');
+  const highlight = makePath('thread-highlight');
+
+  document.body.append(svg);
+
+  function drawThread() {
+    const width = document.documentElement.clientWidth;
+    const height = document.documentElement.scrollHeight;
+
+    svg.style.width = `${width}px`;
+    svg.style.height = `${height}px`;
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+
+    const photos = [
+      ...document.querySelectorAll(
+        '.hero-photo, .photo-chapter .memory-button'
+      )
+    ];
+
+    const points = [{ x: width / 2, y: 20 }];
+
+    photos.forEach((photo, i) => {
+      const r = photo.getBoundingClientRect();
+      const top = r.top + window.scrollY;
+      const middle = top + r.height / 2;
+      const left = Math.max(12, r.left + window.scrollX - 13);
+      const right = Math.min(width - 12, r.right + window.scrollX + 13);
+
+      if (i % 2 === 0) {
+        points.push({ x: left, y: middle - 12 });
+        points.push({ x: right, y: middle + 12 });
+      } else {
+        points.push({ x: right, y: middle - 12 });
+        points.push({ x: left, y: middle + 12 });
+      }
+    });
+
+    points.push({ x: width / 2, y: height - 25 });
+
+    let d = `M ${points[0].x} ${points[0].y}`;
+
+    for (let i = 1; i < points.length; i++) {
+      const a = points[i - 1];
+      const b = points[i];
+      const midX = (a.x + b.x) / 2;
+      const midY = (a.y + b.y) / 2;
+      d += ` Q ${a.x} ${a.y} ${midX} ${midY}`;
+    }
+
+    const last = points[points.length - 1];
+    d += ` T ${last.x} ${last.y}`;
+
+    [shadow, main, highlight].forEach(path =>
+      path.setAttribute('d', d)
+    );
+  }
+
+  drawThread();
+  window.addEventListener('resize', drawThread);
+  window.addEventListener('load', drawThread);
+
+  document.querySelectorAll('.photo-chapter img').forEach(img => {
+    img.addEventListener('load', drawThread);
+  });
+}
+
+/* Draw after all photo chapters have been created */
+const originalBuildGallery = buildGallery;
+buildGallery = function () {
+  originalBuildGallery();
+  requestAnimationFrame(createStoryThread);
+};
