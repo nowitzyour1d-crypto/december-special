@@ -30,3 +30,56 @@
     0 0 16px #ffffff,
     0 0 28px #f7d9ff;
 }
+
+/* Subtle, scattered photo arrangements */
+.clothesline .memory-button:nth-child(2) {
+  margin-top: 12px;
+}
+.clothesline .memory-button:nth-child(5) {
+  margin-top: 24px;
+}
+
+.scrapbook .memory-button:nth-child(1) {
+  margin-top: -8px;
+}
+.scrapbook .memory-button:nth-child(4) {
+  margin-top: 16px;
+}
+
+#memories.editorial .memory-button:nth-child(5) {
+  margin-top: 14px;
+}
+
+.rose-garden .memory-button:nth-child(3) {
+  margin-top: 18px;
+}
+
+.wish-ribbon .memory-button:nth-child(2) {
+  margin-top: 15px;
+}
+.wish-ribbon .memory-button:nth-child(5) {
+  margin-top: -6px;
+}
+
+/* Keep the variations gentle on phones */
+@media (max-width: 600px) {
+  .clothesline .memory-button:nth-child(2),
+  .wish-ribbon .memory-button:nth-child(2) {
+    margin-top: 8px;
+  }
+
+  .clothesline .memory-button:nth-child(5),
+  .scrapbook .memory-button:nth-child(4),
+  .rose-garden .memory-button:nth-child(3) {
+    margin-top: 12px;
+  }
+
+  .scrapbook .memory-button:nth-child(1),
+  .wish-ribbon .memory-button:nth-child(5) {
+    margin-top: 0;
+  }
+
+  #memories.editorial .memory-button:nth-child(5) {
+    margin-top: 8px;
+  }
+}
