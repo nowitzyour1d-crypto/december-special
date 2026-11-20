@@ -52,14 +52,16 @@ body{background:var(--cream)}
 footer{background:rgba(252,247,243,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 @media(max-width:600px){.navigation{background:rgba(252,247,243,.94)}.love-letter,.glass-poem,.track{border-radius:22px}.last-letter:before{inset:4% 3% 3%;border-radius:46% 46% 26px 26px}.note-letter.is-open{margin-top:100px;padding-bottom:135px}.note-letter .secret-note{top:-104px;width:calc(100vw - 40px);min-height:340px;padding:22px 21px;border-radius:4px}}
 @media(prefers-reduced-transparency:reduce){.navigation,.polaroid,.love-letter,.glass-poem,.track,.cake-scene,.note-letter .secret-note,.photo-chapter,footer{backdrop-filter:none;-webkit-backdrop-filter:none}}
-/* White neon glow for lyrics only */
+/* Clear, luminous lyrics with stronger weight and contrast */
 .music-section .lyric-line {
   color: #ffffff;
+  font-weight: 600;
   text-shadow:
-    0 0 3px #ffffff,
-    0 0 8px #ffffff,
-    0 0 16px #ffffff,
-    0 0 28px #f7d9ff;
+    0 1px 3px rgba(42, 15, 31, .72),
+    0 0 5px rgba(255, 255, 255, .95),
+    0 0 13px rgba(255, 255, 255, .8),
+    0 0 26px rgba(255, 205, 231, .9),
+    0 0 42px rgba(247, 217, 255, .6);
 }
 /* Balanced layout: The Way I See You / 03 */
 #memories.editorial .memory-grid {
