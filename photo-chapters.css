@@ -97,3 +97,94 @@
 #memories.editorial .memory-grid > .memory-button:nth-child(5) {
   top: -8px;
 }
+
+.note-envelope {
+  position: absolute;
+  z-index: 3;
+  bottom: 28px;
+  left: 50%;
+  display: block;
+  width: min(82%, 330px);
+  height: 190px;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  transform: translateX(-50%);
+  border: 0;
+  border-radius: 5px;
+  background: linear-gradient(145deg, #efc2ca, #d88e9f);
+  box-shadow: 0 19px 38px #542d3c20;
+  transition: transform .4s ease, filter .3s ease;
+}
+
+.note-envelope:hover { filter: brightness(1.035); }
+.note-envelope::before { content: none; }
+.note-envelope-front {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border-radius: 5px;
+  background: linear-gradient(145deg, #efc2ca, #d88e9f);
+  clip-path: polygon(0 0, 50% 59%, 100% 0, 100% 100%, 0 100%);
+}
+.note-envelope-front::before,
+.note-envelope-front::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: #e5aab7;
+  clip-path: polygon(0 0, 50% 60%, 0 100%);
+  opacity: .85;
+}
+.note-envelope-front::after {
+  background: #d48a9c;
+  clip-path: polygon(100% 0, 50% 60%, 100% 100%);
+}
+.note-envelope-flap {
+  position: absolute;
+  z-index: 4;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 105px;
+  transform-origin: top;
+  background: #eab5c0;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transition: transform .75s cubic-bezier(.2, .75, .2, 1);
+  backface-visibility: hidden;
+}
+.note-envelope-seal {
+  position: absolute;
+  z-index: 5;
+  top: 61%;
+  left: 50%;
+  display: grid;
+  width: 37px;
+  height: 37px;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ffffff88;
+  border-radius: 50%;
+  background: #ad536b;
+  box-shadow: 0 2px 8px #542d3c20;
+  color: #fff;
+  font-family: var(--serif);
+  font-size: 22px;
+  transition: opacity .3s, transform .3s;
+}
+.note-envelope-label {
+  position: absolute;
+  z-index: 5;
+  right: 0;
+  bottom: 17px;
+  left: 0;
+  color: #713e4d;
+  font-size: 8px;
+  letter-spacing: .2em;
+}
+.letter-scene.is-open .note-envelope { transform: translateX(-50%) translateY(28px); }
+.letter-scene.is-open .note-envelope-flap { z-index: 1; transform: rotateX(180deg); }
+.letter-scene.is-open .note-envelope-seal { transform: translate(-50%, -50%) scale(.5); opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .note-envelope, .note-envelope-flap, .note-envelope-seal { transition: none !important; }
+}
