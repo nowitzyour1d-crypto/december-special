@@ -70,7 +70,7 @@ $('#wishButton').addEventListener('click',async()=>{
  }
  candlesBusy=false;button.disabled=false;
 });
-$('#openNote').addEventListener('click',()=>{const letter=$('#noteLetter'),isOpen=letter.classList.toggle('is-open');$('#openNote').setAttribute('aria-expanded',String(isOpen));$('#openNote').setAttribute('aria-label',isOpen?'Close your love letter':'Open your love letter');});
+$('#openNote').addEventListener('click',()=>{const letter=$('#noteLetter'),note=$('#secretNote'),isOpen=letter.classList.toggle('is-open');$('#openNote').setAttribute('aria-expanded',String(isOpen));$('#openNote').setAttribute('aria-label',isOpen?'Close your love letter':'Open your love letter');note.setAttribute('aria-hidden',String(!isOpen));});
 // The song clock, never scroll position, chooses the single visible lyric.
 const poem=$('#glassPoem');
 poem.innerHTML='<span class="glass-shine"></span><div class="lyric-stage" aria-live="polite" aria-atomic="true"><p class="lyric-line" id="currentLyric"></p></div><span class="original-label">ALFAAZ · ONE LINE, ONE FEELING AT A TIME</span><span class="lyric-clock" id="lyricClock">0:00 / 3:05</span>';
