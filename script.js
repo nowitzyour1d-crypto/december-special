@@ -70,7 +70,14 @@ $('#wishButton').addEventListener('click',async()=>{
  }
  candlesBusy=false;button.disabled=false;
 });
-$('#openNote').addEventListener('click',()=>{const note=$('#secretNote');note.hidden=!note.hidden;$('#openNote').setAttribute('aria-expanded',String(!note.hidden));$('#openNote').innerHTML=note.hidden?'A tiny note for you <span>♡</span>':'Keep this close to your heart <span>♡</span>';});
+const letterScene=$('#letterScene'),openNote=$('#openNote'),secretNote=$('#secretNote'),letterHint=$('#letterHint');
+function setLetterOpen(isOpen){letterScene.classList.toggle('is-open',isOpen);openNote.setAttribute('aria-expanded',String(isOpen));openNote.setAttribute('aria-label',isOpen?'Close the love letter':'Open the love letter');secretNote.setAttribute('aria-hidden',String(!isOpen));letterHint.textContent=isOpen?'Your little note, with all my love ♡':'Open your letter ♡';}
+openNote.addEventListener('click',()=>setLetterOpen(openNote.getAttribute('aria-expanded')!=='true'));
+$('#closeNote').addEventListener('click',()=>setLetterOpen(false));
+let letterTouchStart=0;
+letterScene.addEventListener('wheel',event=>{if(Math.abs(event.deltaY)>3)setLetterOpen(event.deltaY<0);},{passive:true});
+letterScene.addEventListener('touchstart',event=>{letterTouchStart=event.touches[0]?.clientY||0;},{passive:true});
+letterScene.addEventListener('touchend',event=>{const touchEnd=event.changedTouches[0]?.clientY||0;if(Math.abs(touchEnd-letterTouchStart)>24)setLetterOpen(touchEnd<letterTouchStart);},{passive:true});
 // The song clock, never scroll position, chooses the single visible lyric.
 const poem=$('#glassPoem');
 poem.innerHTML='<span class="glass-shine"></span><div class="lyric-stage" aria-live="polite" aria-atomic="true"><p class="lyric-line" id="currentLyric"></p></div><span class="original-label">ALFAAZ · ONE LINE, ONE FEELING AT A TIME</span><span class="lyric-clock" id="lyricClock">0:00 / 3:05</span>';
