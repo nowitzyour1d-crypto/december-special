@@ -23,6 +23,36 @@
 .lyric-line{width:100%;padding:0 8px;opacity:0;transform:translateY(38px);filter:blur(2px);transition:opacity .38s ease,transform .48s cubic-bezier(.2,.7,.25,1),filter .38s ease}
 .lyric-line.arrived{opacity:1;transform:translateY(0);filter:blur(0)}
 @media(prefers-reduced-motion:reduce){.lyric-line{transition:none;transform:none;filter:none}}
+
+/* A quiet liquid-glass finish: warm glass, soft refraction, and luminous edges. */
+:root{--glass-fill:rgba(255,252,250,.52);--glass-strong:rgba(255,253,251,.72);--glass-line:rgba(255,255,255,.8);--glass-shadow:0 20px 60px rgba(96,50,68,.10),inset 0 1px 0 rgba(255,255,255,.9)}
+body{background:radial-gradient(ellipse at 12% 11%,rgba(245,218,226,.68),transparent 34%),radial-gradient(ellipse at 88% 34%,rgba(232,220,239,.45),transparent 33%),radial-gradient(ellipse at 42% 84%,rgba(249,227,205,.46),transparent 34%),#fbf6f2;background-attachment:fixed}
+.grain{opacity:.055}
+.navigation{background:rgba(255,251,249,.68);backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);border-bottom:1px solid rgba(255,255,255,.8);box-shadow:0 8px 28px rgba(87,50,65,.045)}
+.gate{background:radial-gradient(ellipse at 78% 15%,rgba(234,191,207,.55),transparent 43%),radial-gradient(ellipse at 15% 90%,rgba(235,221,241,.48),transparent 43%),rgba(251,246,242,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.gate .envelope{background:linear-gradient(145deg,rgba(255,255,255,.72),rgba(243,222,229,.48));border:1px solid rgba(255,255,255,.86);box-shadow:0 22px 54px rgba(119,66,86,.13),inset 0 1px 0 #fff;backdrop-filter:blur(20px) saturate(155%);-webkit-backdrop-filter:blur(20px) saturate(155%)}
+.input{background:rgba(255,255,255,.52);border:1px solid rgba(255,255,255,.86);box-shadow:inset 0 1px 8px rgba(112,65,83,.05),0 8px 25px rgba(112,65,83,.05);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}
+.pill.btn{background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.9);box-shadow:0 9px 24px rgba(130,65,88,.09),inset 0 1px 0 #fff;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:transform .28s ease,box-shadow .28s ease,background .28s ease}
+.pill.btn:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(130,65,88,.14),inset 0 1px 0 #fff}
+.polaroid{background:rgba(255,253,251,.74);border:1px solid rgba(255,255,255,.92);box-shadow:0 16px 38px rgba(74,43,55,.12),inset 0 1px 0 #fff;backdrop-filter:blur(18px) saturate(135%);-webkit-backdrop-filter:blur(18px) saturate(135%)}
+.love-letter,.glass-poem,.track,.cake-scene,.secret-note{background:linear-gradient(145deg,rgba(255,255,255,.72),rgba(255,250,249,.38));border:1px solid rgba(255,255,255,.82);box-shadow:var(--glass-shadow);backdrop-filter:blur(24px) saturate(145%);-webkit-backdrop-filter:blur(24px) saturate(145%)}
+.love-letter{border-radius:28px;position:relative;overflow:hidden}.love-letter:before,.glass-poem:before,.track:before,.secret-note:before{content:"";position:absolute;inset:1px;border-radius:inherit;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.58),transparent 38%,rgba(228,201,212,.10));opacity:.75}.love-letter>*{position:relative}
+.photo-chapter{background-color:rgba(250,245,244,.58);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+#memories.photo-chapter.editorial{background:rgba(251,246,242,.55)}
+.clothesline{background:linear-gradient(135deg,rgba(250,239,237,.68),rgba(245,231,237,.54))}
+.scrapbook{background:linear-gradient(145deg,rgba(255,252,248,.72),rgba(248,236,238,.50))}
+.rose-garden{background:radial-gradient(ellipse at 10% 20%,rgba(243,223,229,.72),transparent 38%),radial-gradient(ellipse at 90% 80%,rgba(241,227,220,.74),transparent 40%),rgba(251,246,242,.56)}
+.wish-ribbon{background:linear-gradient(145deg,rgba(249,232,237,.7),rgba(241,230,241,.48))}
+.music-section{background:radial-gradient(ellipse at 25% 15%,rgba(227,201,215,.56),transparent 44%),radial-gradient(ellipse at 80% 84%,rgba(242,226,218,.62),transparent 42%),rgba(249,241,240,.46)}
+.glass-poem,.track{border-radius:28px;position:relative;overflow:hidden}.track{padding:16px 20px}
+.wish-section{background:radial-gradient(ellipse at 50% 45%,rgba(255,255,255,.45),transparent 60%)}
+.cake-scene{border-radius:32px;padding:28px;background:linear-gradient(145deg,rgba(255,255,255,.34),rgba(246,220,229,.22))}
+.last-letter{position:relative;isolation:isolate;background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.72),transparent 53%)}
+.last-letter:before{content:"";position:absolute;z-index:-1;inset:8% 7% 5%;border:1px solid rgba(255,255,255,.6);border-radius:48% 48% 34px 34px;background:linear-gradient(145deg,rgba(255,255,255,.24),rgba(246,224,230,.15));box-shadow:0 20px 80px rgba(109,66,83,.045);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.note-letter .secret-note{border-radius:22px;background:linear-gradient(145deg,rgba(255,255,255,.85),rgba(255,249,249,.7));box-shadow:0 24px 70px rgba(83,48,64,.14),inset 0 1px 0 #fff}
+footer{background:rgba(255,251,249,.52);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+@media(max-width:600px){.navigation{background:rgba(255,251,249,.76)}.love-letter,.glass-poem,.track{border-radius:22px}.photo-chapter{backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}.last-letter:before{inset:4% 3% 3%;border-radius:46% 46% 26px 26px}.note-letter .secret-note{border-radius:18px}}
+@media(prefers-reduced-transparency:reduce){.navigation,.polaroid,.love-letter,.glass-poem,.track,.cake-scene,.secret-note,.photo-chapter,footer{backdrop-filter:none;-webkit-backdrop-filter:none;background-color:rgba(255,250,248,.94)}}
 /* White neon glow for lyrics only */
 .music-section .lyric-line {
   color: #ffffff;
