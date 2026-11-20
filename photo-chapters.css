@@ -97,3 +97,34 @@
 #memories.editorial .memory-grid > .memory-button:nth-child(5) {
   top: -8px;
 }
+
+/* Alternate each keepsake up and down for a clear, continuous zigzag. */
+.photo-chapter .chapter-photos > .memory-button:nth-child(odd) {
+  top: -22px;
+  margin-top: 0 !important;
+}
+
+.photo-chapter .chapter-photos > .memory-button:nth-child(even) {
+  top: 22px;
+  margin-top: 0 !important;
+}
+
+#memories.editorial .memory-grid > .memory-button:nth-child(odd) {
+  top: -22px;
+}
+
+#memories.editorial .memory-grid > .memory-button:nth-child(even) {
+  top: 22px;
+}
+
+@media (max-width: 600px) {
+  .photo-chapter .chapter-photos > .memory-button:nth-child(odd),
+  #memories.editorial .memory-grid > .memory-button:nth-child(odd) {
+    top: -12px;
+  }
+
+  .photo-chapter .chapter-photos > .memory-button:nth-child(even),
+  #memories.editorial .memory-grid > .memory-button:nth-child(even) {
+    top: 12px;
+  }
+}
