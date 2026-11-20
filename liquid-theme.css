@@ -647,3 +647,24 @@ input:focus-visible {
   .note-paper p[lang="bn"] { font-size: 14px; }
   .note-paper .handwritten { font-size: 18px; }
 }
+
+.photo-chapter .chapter-heading h2,
+#memories.photo-chapter.editorial .center-heading h2 {
+  color: #8a2c63;
+  font-weight: 500;
+  background: linear-gradient(112deg, #6d2453 0%, #9c2f69 52%, #652e7d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .28), 0 5px 14px rgba(111, 31, 77, .2);
+}
+
+.photo-chapter .chapter-heading h2 em,
+#memories.photo-chapter.editorial .center-heading h2 em {
+  color: #962f6a;
+  background: linear-gradient(110deg, #78264f 0%, #ad2f79 52%, #712c82 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .24), 0 4px 12px rgba(132, 34, 89, .2);
+}
