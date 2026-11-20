@@ -8,41 +8,7 @@ function toggleMusic(){if(isPlaying){audio.pause();setSoundState(false);}else pl
 audio.addEventListener('error',()=>{$('#audioStatus').textContent='The song could not load. Please check your connection.';setSoundState(false);});audio.addEventListener('pause',()=>setSoundState(false));audio.addEventListener('play',()=>setSoundState(true));
 $('#soundToggle').addEventListener('click',toggleMusic);$('#trackPlay').addEventListener('click',toggleMusic);
 $('#personalLine').textContent="Love isn't only in the big words. It's in checking whether you've eaten, reminding you to rest, a little teasing, and wanting to hear about your day. Those tiny things with you mean everything to me.";
-function drawWovenRibbon(){
- const svg=$('#wovenRibbon'),overlay=$('#wovenRibbonOverlay'),main=$('#world'),height=main.scrollHeight,points=[];
- [svg,overlay].forEach(layer=>{layer.setAttribute('viewBox',`0 0 1000 ${height}`);layer.style.height=`${height}px`;});
- const sections=[...main.querySelectorAll('.hero,#letter,.photo-chapter,#memories,#musicMoment,#wish,.last-letter,footer')];
- const stops=[{x:72,y:Math.max(100,innerHeight*.12)}];
- sections.forEach((section,index)=>{
-  const top=section.offsetTop,sectionHeight=section.offsetHeight;
-  if(section.classList.contains('hero')){
-   stops.push({x:58,y:top+sectionHeight*.12},{x:76,y:top+sectionHeight*.9});
-   return;
-  }
-  const edge=index%2===0?940:60,opposite=index%2===0?70:930;
-  stops.push({x:edge,y:top+sectionHeight*.24},{x:opposite,y:top+sectionHeight*.52},{x:edge,y:top+sectionHeight*.78});
- });
- stops.push({x:930,y:height-60});
- const path=stops.map((point,index)=>{
-  if(index===0)return `M ${point.x} ${point.y}`;
-  const previous=stops[index-1],mid=(previous.y+point.y)/2;
-  const curl=index%3===2?130:-115;
-  return `C ${previous.x+curl} ${mid-45}, ${point.x-curl} ${mid+45}, ${point.x} ${point.y}`;
- }).join(' ');
- svg.querySelectorAll('.ribbon-shadow,.ribbon-body,.ribbon-glint').forEach(line=>line.setAttribute('d',path));
- overlay.querySelectorAll('.ribbon-body,.ribbon-glint').forEach(line=>line.setAttribute('d',path));
- const windows=overlay.querySelector('#ribbonPhotoWindows');windows.replaceChildren();
- [...main.querySelectorAll('.hero-photo img,.memory-button img')].forEach((image,index)=>{
-  if(index%2===0)return;
-  const frame=image.getBoundingClientRect(),root=main.getBoundingClientRect();
-  const windowRect=document.createElementNS('http://www.w3.org/2000/svg','rect');
-  windowRect.setAttribute('x',String((frame.left-root.left)/innerWidth*1000));
-  windowRect.setAttribute('y',String(frame.top-root.top+main.scrollTop));
-  windowRect.setAttribute('width',String(frame.width/innerWidth*1000));windowRect.setAttribute('height',String(frame.height));
-  windows.append(windowRect);
- });
-}
-function openWorld(){if(unlocked)return;unlocked=true;$('#world').hidden=false;$('#gate').hidden=true;document.body.classList.remove('locked');document.querySelectorAll('[data-photo]').forEach(img=>img.src=window.MEMORIES[Number(img.dataset.photo)-1].src);buildGallery();drawWovenRibbon();window.addEventListener('resize',drawWovenRibbon,{passive:true});const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));createPetals();window.addEventListener('scroll',onScroll,{passive:true});onScroll();}
+function openWorld(){if(unlocked)return;unlocked=true;$('#world').hidden=false;$('#gate').hidden=true;document.body.classList.remove('locked');document.querySelectorAll('[data-photo]').forEach(img=>img.src=window.MEMORIES[Number(img.dataset.photo)-1].src);buildGallery();const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));createPetals();window.addEventListener('scroll',onScroll,{passive:true});onScroll();}
 $('#previewNotice').hidden=!!window.DECEMBER_SECURE;
 $('#unlockForm').addEventListener('submit',async e=>{e.preventDefault();const input=$('#password'),button=e.currentTarget.querySelector('button');button.disabled=true;let valid=false;try{if(window.DECEMBER_SECURE){const r=await fetch('./api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:input.value})});valid=r.ok;if(r.status===429)throw Error('A few too many tries. Please wait a minute.');}else valid=input.value==='0906';if(!valid){$('#gateError').textContent='Not quite, my love. Try our little secret again.';input.value='';input.focus();return;}openWorld();playMusic();}catch(err){$('#gateError').textContent=err.message||'Could not open your surprise. Try again.';}finally{button.disabled=false;}});
 if(window.DECEMBER_SECURE)fetch('./api/session').then(r=>{if(r.ok){openWorld();setSoundState(false);$('#audioStatus').textContent='Tap play to start our song.';}}).catch(()=>{});
