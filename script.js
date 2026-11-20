@@ -105,6 +105,13 @@ $('#wishButton').addEventListener('click',async()=>{
  candlesBusy=false;button.disabled=false;
 });
 $('#openNote').addEventListener('click',()=>{const note=$('#secretNote');note.hidden=!note.hidden;$('#openNote').setAttribute('aria-expanded',String(!note.hidden));$('#openNote').innerHTML=note.hidden?'A tiny note for you <span>♡</span>':'Keep this close to your heart <span>♡</span>';});
+const noteMailer=$('#noteMailer'),pullLetter=$('#pullLetter');
+function unfoldLetter(){if(noteMailer.classList.contains('unfolded'))return;noteMailer.classList.add('unfolded');pullLetter.setAttribute('aria-label','Letter opened');$('#mailerHint').textContent='Your little note, just for you';}
+pullLetter.addEventListener('click',unfoldLetter);
+noteMailer.addEventListener('wheel',event=>{if(event.deltaY<0){event.preventDefault();unfoldLetter();}},{passive:false});
+let mailerTouchY=0;
+noteMailer.addEventListener('touchstart',event=>{mailerTouchY=event.changedTouches[0].clientY;},{passive:true});
+noteMailer.addEventListener('touchend',event=>{if(mailerTouchY-event.changedTouches[0].clientY>12)unfoldLetter();},{passive:true});
 // The song clock, never scroll position, chooses the single visible lyric.
 const poem=$('#glassPoem');
 poem.innerHTML='<span class="glass-shine"></span><div class="lyric-stage" aria-live="polite" aria-atomic="true"><p class="lyric-line" id="currentLyric"></p></div><span class="original-label">ALFAAZ · ONE LINE, ONE FEELING AT A TIME</span><span class="lyric-clock" id="lyricClock">0:00 / 3:05</span>';
