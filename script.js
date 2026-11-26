@@ -103,3 +103,37 @@ audio.addEventListener('play',()=>{cancelAnimationFrame(lyricFrame);lyricTick();
 audio.addEventListener('pause',()=>{cancelAnimationFrame(lyricFrame);syncLyrics();});
 ['timeupdate','seeked','loadedmetadata','ended'].forEach(name=>audio.addEventListener(name,syncLyrics));
 setSoundState(false);
+
+/* ---- Premium animation layer (approved design preview) ----
+   Additive only: loads premium.css, adds lobby sparkles and petals,
+   a heart-burst unlock transition, hero floating hearts, gentle
+   parallax and candle spark bursts. The password, music, gallery,
+   wish and letter logic above is untouched. */
+(function(){
+ if(window.__premiumLayer)return;window.__premiumLayer=true;
+ var link=document.createElement('link');link.rel='stylesheet';link.href='premium.css';document.head.appendChild(link);
+ if(reduceMotion)return;
+ /* Lobby petals (falling while the gate is locked) + twinkling sparkles */
+ var petalsBox=document.querySelector('#petals');
+ if(petalsBox){for(var i=0;i<12;i++){var p=document.createElement('i');p.className='petal lobby-petal';p.style.left=(i*8+Math.random()*4)+'%';p.style.setProperty('--fall',(16+(i%5)*3)+'s');p.style.setProperty('--start',(-i*3.5)+'s');petalsBox.appendChild(p);}}
+ var gate=document.querySelector('#gate');
+ if(gate){for(var s=0;s<14;s++){var sp=document.createElement('span');sp.className='lobby-sparkle';sp.setAttribute('aria-hidden','true');sp.textContent=s%2?'✧':'✦';sp.style.left=(3+Math.random()*94)+'%';sp.style.top=(4+Math.random()*88)+'%';sp.style.fontSize=(10+Math.random()*9)+'px';sp.style.animationDelay=(Math.random()*3.2)+'s';sp.style.animationDuration=(2.4+Math.random()*2)+'s';gate.appendChild(sp);}}
+ /* Floating hearts in the hero */
+ var hero=document.querySelector('.hero');
+ if(hero){for(var h=0;h<10;h++){var fh=document.createElement('span');fh.className='premium-float-heart';fh.setAttribute('aria-hidden','true');fh.textContent='♡';fh.style.left=(4+Math.random()*90)+'%';fh.style.top=(52+Math.random()*40)+'%';fh.style.fontSize=(12+Math.random()*11)+'px';fh.style.animationDelay=(-Math.random()*9.5)+'s';fh.style.animationDuration=(8+Math.random()*4.5)+'s';hero.appendChild(fh);}}
+ /* Gentle parallax on the hero photos and flowers */
+ var heroEls=Array.prototype.slice.call(document.querySelectorAll('.hero-photo,.hero-flower')),parallaxQueued=false;
+ function premiumParallax(){parallaxQueued=false;if(!unlocked)return;var y=Math.min(window.scrollY||0,600);heroEls.forEach(function(el){var f=el.classList.contains('hero-flower')?0.14:0.06;el.style.translate='0 '+(y*f).toFixed(1)+'px';});}
+ window.addEventListener('scroll',function(){if(parallaxQueued||!unlocked)return;parallaxQueued=true;requestAnimationFrame(premiumParallax);},{passive:true});
+ /* Heart-burst + zoom-blur transition when the gate unlocks */
+ var unlockForm=document.querySelector('#unlockForm'),unlockPending=false;
+ if(unlockForm)unlockForm.addEventListener('submit',function(){unlockPending=true;});
+ function premiumBurst(){var box=document.querySelector('#celebration');if(!box)return;for(var i=0;i<18;i++){var heart=document.createElement('span');heart.className='premium-burst-heart';heart.setAttribute('aria-hidden','true');heart.textContent='♡';heart.style.left='50vw';heart.style.top='46vh';heart.style.fontSize=(16+Math.random()*18)+'px';heart.style.setProperty('--bx',((Math.random()-0.5)*520)+'px');heart.style.setProperty('--by',(-40-Math.random()*280)+'px');heart.style.setProperty('--br',((Math.random()-0.5)*70)+'deg');box.appendChild(heart);setTimeout(function(el){return function(){el.remove();};}(heart),1150);}}
+ var bodyObserver=new MutationObserver(function(){if(!unlockPending||document.body.classList.contains('locked'))return;unlockPending=false;var g=document.querySelector('#gate');if(!g||g.hidden)return;document.body.classList.add('premium-unlocking');g.hidden=false;premiumBurst();setTimeout(function(){g.hidden=true;document.body.classList.remove('premium-unlocking');},850);});
+ bodyObserver.observe(document.body,{attributes:true,attributeFilter:['class']});
+ /* Spark burst when a candle is tapped */
+ document.querySelectorAll('.candle').forEach(function(candle){candle.addEventListener('click',function(){if(candle.classList.contains('out'))return;var scene=document.querySelector('.cake-scene');if(!scene)return;var r=candle.getBoundingClientRect(),sr=scene.getBoundingClientRect(),cx=r.left-sr.left+r.width/2,cy=r.top-sr.top+4;for(var i=0;i<7;i++){var spark=document.createElement('span');spark.className='premium-spark';spark.setAttribute('aria-hidden','true');spark.textContent=i%2?'✧':'✦';spark.style.left=cx+'px';spark.style.top=cy+'px';spark.style.fontSize=(10+Math.random()*7)+'px';spark.style.setProperty('--sx',((Math.random()-0.5)*92)+'px');spark.style.setProperty('--sy',(-12-Math.random()*58)+'px');scene.appendChild(spark);setTimeout(function(el){return function(){el.remove();};}(spark),950);}});});
+ /* Stagger the photo-frame reveals once the world opens */
+ var staggerObserver=new MutationObserver(function(){if(document.body.classList.contains('locked'))return;document.querySelectorAll('.memory-button').forEach(function(btn,i){btn.style.setProperty('--i',String(i%5));});staggerObserver.disconnect();});
+ staggerObserver.observe(document.body,{attributes:true,attributeFilter:['class']});
+})();
