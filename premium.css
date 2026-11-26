@@ -1,146 +1,212 @@
-/* Premium layer — approved design-preview additions (fonts + animation).
-   Loaded after styles.css / lobby.css / photo-chapters.css, so these rules
-   only refine the existing site. No wording, photos, colours or layout
-   are changed here beyond the approved font and animation upgrades. */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Great+Vibes&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
 
-:root{--display:'Playfair Display','Cormorant Garamond',Georgia,serif;--script:'Great Vibes',cursive;--letter:'EB Garamond',Georgia,serif}
+/* ================================================================
+   PREMIUM LAYER — the ONLY differences from the live site:
+   (1) font upgrades, (2) animation layer. No wording, layout,
+   colour or content changes.
+   ================================================================ */
 
-/* ---- Font upgrades ----
-   Headings: Playfair Display. Romantic accents, "Saniya", the "My Love"
-   brand and all "your Mona" sign-offs: Great Vibes. Love-letter body:
-   EB Garamond. Bengali always stays in Noto Serif Bengali. */
-h1,h2{font-family:var(--display)}
-h1 em,h2 em{font-family:var(--script);font-style:normal;font-weight:400;letter-spacing:0}
-[lang="bn"]{font-family:'Noto Serif Bengali',serif}
-.handwritten{font-family:var(--script);font-style:normal}
-.polaroid figcaption{font-family:var(--script);font-style:normal;font-size:20px}
-.wordmark i{font-family:var(--script);font-style:normal;font-size:25px}
-.final-sign>strong{font-family:var(--script);font-style:normal}
-.love-letter>p:not(.handwritten):not([lang="bn"]){font-family:var(--letter)}
-#secretNote>p:not(.handwritten):not([lang="bn"]){font-family:var(--letter)}
-#gate h1{font-family:var(--display)}
-#gate h1 em{font-family:var(--script);font-style:normal}
-#gate .gate-copy{font-family:var(--letter);font-style:italic}
-#gate .gate-sign i{font-family:var(--script);font-style:normal;font-size:29px}
+/* ---------- (1) FONT UPGRADES ---------- */
+/* royal high-contrast display serif for the big headings */
+#gate h1, .hero-title h1, h2 { font-family: 'Playfair Display', 'Noto Serif Bengali', Georgia, serif !important; }
+/* flowing script for romantic accent words inside headings */
+.hero-title h1 em, h2 em { font-family: 'Great Vibes', 'Noto Serif Bengali', cursive !important; font-style: normal !important; }
+/* the lobby's glowing "Special" also takes the script face */
+#gate h1 em { font-family: 'Great Vibes', 'Noto Serif Bengali', cursive !important; font-style: normal !important; }
+/* script for handwritten lines and every "your Mona" sign-off */
+.handwritten, .gate-sign i, .final-sign strong, .wordmark { font-family: 'Great Vibes', 'Noto Serif Bengali', cursive !important; font-style: normal !important; }
+.handwritten { font-size: 32px !important; }
+.hero-title .handwritten { font-size: 30px !important; }
+.gate-sign i { font-size: 30px !important; }
+/* the love letter: refined, very readable Garamond body */
+.love-letter { font-family: 'EB Garamond', 'Noto Serif Bengali', Georgia, serif !important; font-size: 17px !important; }
+.love-letter .handwritten { font-size: 34px !important; line-height: 1.3 !important; }
+.secret-note { font-family: 'EB Garamond', 'Noto Serif Bengali', Georgia, serif !important; }
+/* Bengali always renders in its proper serif */
+[lang=bn] { font-family: 'Noto Serif Bengali', serif !important; }
+h2 [lang=bn], h2[lang=bn] { font-family: 'Noto Serif Bengali', serif !important; }
 
-/* ---- Lobby: slow Ken Burns breathing on the background ---- */
-#gate{background-image:linear-gradient(180deg,rgba(43,10,78,.28) 0%,rgba(43,10,78,0) 26%,rgba(43,10,78,0) 62%,rgba(43,10,78,.30) 100%)}
-#gate::before{content:"";position:absolute;inset:-4%;z-index:0;background-image:linear-gradient(180deg,rgba(43,10,78,.28) 0%,rgba(43,10,78,0) 26%,rgba(43,10,78,0) 62%,rgba(43,10,78,.30) 100%),url('assets/lobby-dream.webp');background-size:cover;background-position:center;background-repeat:no-repeat;animation:premiumKenBurns 38s ease-in-out infinite alternate;pointer-events:none}
-@keyframes premiumKenBurns{from{transform:scale(1) translate(0,0)}to{transform:scale(1.09) translate(-1%,-1.5%)}}
-/* ---- Lobby: shimmering waves layer ---- */
-#gate::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.13) 44%,rgba(255,182,213,.12) 50%,rgba(255,255,255,.13) 56%,transparent 68%);background-size:230% 230%;mix-blend-mode:screen;animation:premiumWaveShimmer 9s ease-in-out infinite}
-@keyframes premiumWaveShimmer{0%,100%{background-position:0% 0%;opacity:.55}50%{background-position:100% 100%;opacity:.95}}
-/* ---- Lobby: twinkling sparkles (spans are added by script.js) ---- */
-.lobby-sparkle{position:absolute;z-index:2;pointer-events:none;color:#ffe9f4;text-shadow:0 0 10px rgba(255,182,213,.9),0 0 22px rgba(255,111,174,.6);animation:premiumSparkle 3.2s ease-in-out infinite}
-@keyframes premiumSparkle{0%,100%{opacity:.15;transform:scale(.6) rotate(0deg)}50%{opacity:1;transform:scale(1.15) rotate(20deg)}}
-/* ---- Lobby: falling rose petals, also while the gate is locked ---- */
-body.locked #petals .petal{animation-play-state:running}
-#petals .petal.lobby-petal{width:11px;height:17px;background:#f6b8cd}
-/* ---- Lobby: pulsing / beating heart divider ---- */
-#gate .lobby-divider{animation:premiumHeartbeat 1.9s ease-in-out infinite}
-@keyframes premiumHeartbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.07)}28%{transform:scale(1)}42%{transform:scale(1.05)}56%{transform:scale(1)}}
-#gate .lobby-heart{animation:premiumHeartBeat 1.9s ease-in-out infinite}
-@keyframes premiumHeartBeat{0%,100%{transform:rotate(45deg) scale(1)}14%{transform:rotate(45deg) scale(1.35)}28%{transform:rotate(45deg) scale(1)}42%{transform:rotate(45deg) scale(1.25)}56%{transform:rotate(45deg) scale(1)}}
-/* ---- Lobby: title glow shimmer ---- */
-#gate h1{animation:premiumTitleGlow 5s ease-in-out infinite}
-@keyframes premiumTitleGlow{0%,100%{text-shadow:0 4px 24px rgba(43,10,78,.45)}50%{text-shadow:0 4px 24px rgba(43,10,78,.45),0 0 30px rgba(255,143,191,.6),0 0 64px rgba(255,111,174,.35)}}
-#gate h1 em{animation:premiumTitleGlowPink 5s ease-in-out infinite}
-@keyframes premiumTitleGlowPink{0%,100%{text-shadow:0 0 18px rgba(255,111,174,.6),0 0 46px rgba(255,111,174,.35)}50%{text-shadow:0 0 26px rgba(255,143,191,.9),0 0 70px rgba(255,111,174,.55)}}
-/* ---- Lobby: floating password-card entrance ---- */
-#gate .lobby-panel{animation:premiumCardIn .95s cubic-bezier(.2,.7,.25,1) .15s both}
-#gate .gate-sign{animation:premiumCardIn .95s ease .4s both}
-@keyframes premiumCardIn{from{opacity:0;transform:translateY(24px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
-/* ---- Lobby: glowing sheen on the unlock button ---- */
-#gate .lobby-submit{position:relative;overflow:hidden}
-#gate .lobby-submit::after{content:"";position:absolute;top:-70%;left:-75%;width:42%;height:240%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:rotate(20deg);animation:premiumSheen 3.8s ease-in-out infinite;pointer-events:none}
-@keyframes premiumSheen{0%,55%{left:-75%}92%,100%{left:135%}}
-/* ---- Unlock: heart-burst with a zoom-blur transition into the site ---- */
-body.premium-unlocking #gate{animation:premiumGateExit .85s ease-in forwards}
-@keyframes premiumGateExit{to{opacity:0;transform:scale(1.14);filter:blur(12px)}}
-body.premium-unlocking #world{animation:premiumWorldIn .95s ease .12s both}
-@keyframes premiumWorldIn{from{opacity:0;filter:blur(6px);transform:scale(.985)}to{opacity:1;filter:blur(0);transform:scale(1)}}
-.premium-burst-heart{position:fixed;z-index:70;pointer-events:none;color:#ff6fae;text-shadow:0 0 14px rgba(255,111,174,.85);animation:premiumHeartBurst 1.05s ease-out forwards}
-@keyframes premiumHeartBurst{0%{opacity:1;transform:translate(-50%,-50%) scale(.4) rotate(0deg)}100%{opacity:0;transform:translate(calc(-50% + var(--bx,0px)),calc(-50% + var(--by,-140px))) scale(1.5) rotate(var(--br,24deg))}}
-
-/* ---- Inner site: heading shimmer ---- */
-h1 em,h2 em{animation:premiumHeadingShimmer 4.5s ease-in-out infinite}
-@keyframes premiumHeadingShimmer{0%,100%{text-shadow:0 0 0 rgba(255,111,174,0)}50%{text-shadow:0 0 18px rgba(255,143,191,.55),0 0 44px rgba(255,111,174,.3)}}
-/* ---- Inner site: photo frame reveal + hover lift / tilt ---- */
-.memory-button .polaroid{transition:box-shadow .3s,transform .3s}
-.memory-button:hover .polaroid,.memory-button:focus-visible .polaroid{animation:none;transform:translateY(-10px) rotate(0deg) scale(1.02);box-shadow:0 22px 44px rgba(97,43,62,.32)}
-.hero-photo:hover{animation:none;transform:translateY(-8px) rotate(var(--tilt,0deg))}
-.memory-button.reveal{transition-delay:calc(var(--i,0)*.09s)}
-.hero-photo,.hero-flower{will-change:translate}
-/* ---- Inner site: floating hearts in the hero (spans added by script.js) ---- */
-.premium-float-heart{position:absolute;z-index:1;pointer-events:none;color:#d893ab;opacity:0;animation:premiumFloatHeart 9.5s ease-in infinite}
-@keyframes premiumFloatHeart{0%{opacity:0;transform:translateY(0) scale(.7) rotate(-8deg)}14%{opacity:.5}82%{opacity:.35}100%{opacity:0;transform:translateY(-260px) scale(1.05) rotate(10deg)}}
-/* ---- Inner site: realistic candle flicker with halo; spark burst on tap ---- */
-.candle{cursor:pointer}
-.candle::before{content:"";position:absolute;left:50%;top:-27px;width:36px;height:36px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,216,140,.55),rgba(255,170,80,.22) 55%,transparent 70%);animation:premiumHalo 1.7s ease-in-out infinite alternate;pointer-events:none}
-.candle.out::before{opacity:0;animation:none}
-@keyframes premiumHalo{from{opacity:.5;transform:translateX(-50%) scale(.82)}to{opacity:1;transform:translateX(-50%) scale(1.18)}}
-@keyframes flicker{0%{transform:rotate(-4deg) scale(1,1.06)}25%{transform:rotate(5deg) scale(.92,1.12)}50%{transform:rotate(-6deg) scale(1.06,.94)}75%{transform:rotate(3deg) scale(.95,1.09)}100%{transform:rotate(-2deg) scale(1,1)}}
-.premium-spark{position:absolute;z-index:6;pointer-events:none;color:#ffd166;text-shadow:0 0 8px rgba(255,190,80,.9);animation:premiumSparkBurst .85s ease-out forwards}
-@keyframes premiumSparkBurst{0%{opacity:1;transform:translate(-50%,-50%) scale(.5)}100%{opacity:0;transform:translate(calc(-50% + var(--sx,0px)),calc(-50% + var(--sy,-46px))) scale(1.35) rotate(130deg)}}
-
-/* ---- Love letter: lines reveal one by one, ink on paper ---- */
-@keyframes premiumInk{from{opacity:0;transform:translateY(14px);filter:blur(3px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
-.love-letter.reveal.visible>*{animation:premiumInk .8s cubic-bezier(.2,.7,.25,1) both}
-.love-letter.reveal.visible>*:nth-child(1){animation-delay:.05s}
-.love-letter.reveal.visible>*:nth-child(2){animation-delay:.18s}
-.love-letter.reveal.visible>*:nth-child(3){animation-delay:.3s}
-.love-letter.reveal.visible>*:nth-child(4){animation-delay:.42s}
-.love-letter.reveal.visible>*:nth-child(5){animation-delay:.55s}
-.love-letter.reveal.visible>*:nth-child(6){animation-delay:.68s}
-.love-letter.reveal.visible>*:nth-child(7){animation-delay:.8s}
-.love-letter.reveal.visible>*:nth-child(8){animation-delay:.92s}
-.love-letter.reveal.visible>*:nth-child(9){animation-delay:1.05s}
-.love-letter.reveal.visible>*:nth-child(10){animation-delay:1.18s}
-.love-letter.reveal.visible>*:nth-child(11){animation-delay:1.32s}
-/* ---- Love letter: soft warm paper glow + gentle float afterwards ---- */
-.love-letter.reveal.visible{animation:premiumPaperGlow 2.8s ease .9s both,premiumPaperFloat 7s ease-in-out 1.9s infinite}
-@keyframes premiumPaperGlow{0%{box-shadow:0 12px 50px rgba(119,76,96,.06)}50%{box-shadow:0 12px 50px rgba(119,76,96,.06),0 0 44px rgba(255,196,214,.55)}100%{box-shadow:0 12px 50px rgba(119,76,96,.06)}}
-@keyframes premiumPaperFloat{0%,100%{translate:0 0}50%{translate:0 -5px}}
-/* ---- Sign-off shimmer ---- */
-.letter-sign .handwritten,.final-sign strong{animation:premiumSignShimmer 4s ease-in-out infinite}
-@keyframes premiumSignShimmer{0%,100%{text-shadow:0 0 0 rgba(255,111,174,0)}50%{text-shadow:0 0 16px rgba(255,143,191,.6),0 0 40px rgba(255,111,174,.3)}}
-/* ---- Closing letter section: same ink reveal ---- */
-.last-letter .reveal.visible{animation:premiumInk .9s cubic-bezier(.2,.7,.25,1) both}
-
-/* ---- Closing letter: wax seal breaks into two halves, flap lifts, ----
-   letter paper slides / unfolds out, envelope fades away. ---- */
-.letter-scene.is-open #openNote .note-envelope-flap,.letter-scene.is-open #openNote .envelope-flap{transition:transform .95s cubic-bezier(.2,.75,.2,1) .14s}
-.letter-scene.is-open #openNote .note-envelope-seal,.letter-scene.is-open #openNote .envelope-seal{opacity:1;transform:translate(-50%,-50%);background:transparent;border-color:transparent;box-shadow:none;color:transparent}
-#openNote .note-envelope-seal::before,#openNote .note-envelope-seal::after,#openNote .envelope-seal::before,#openNote .envelope-seal::after{content:"";position:absolute;top:-1px;bottom:-1px;width:50%;background:#ad536b;opacity:0;pointer-events:none}
-#openNote .note-envelope-seal::before,#openNote .envelope-seal::before{left:-1px;border-radius:50% 0 0 50%;border:1px solid rgba(255,255,255,.5);border-right:1px dashed rgba(255,255,255,.75)}
-#openNote .note-envelope-seal::after,#openNote .envelope-seal::after{right:-1px;border-radius:0 50% 50% 0;border:1px solid rgba(255,255,255,.5);border-left:1px dashed rgba(255,255,255,.75)}
-.letter-scene.is-open #openNote .note-envelope-seal::before,.letter-scene.is-open #openNote .envelope-seal::before{opacity:1;animation:premiumSealLeft .8s cubic-bezier(.2,.7,.25,1) .05s forwards}
-.letter-scene.is-open #openNote .note-envelope-seal::after,.letter-scene.is-open #openNote .envelope-seal::after{opacity:1;animation:premiumSealRight .8s cubic-bezier(.2,.7,.25,1) .05s forwards}
-@keyframes premiumSealLeft{to{transform:translate(-24px,8px) rotate(-42deg);opacity:0}}
-@keyframes premiumSealRight{to{transform:translate(24px,8px) rotate(42deg);opacity:0}}
-.letter-scene.is-open #openNote{opacity:.08;transition:opacity 1s ease .95s,transform 1s ease .95s}
-.letter-scene.is-open #openNote .note-envelope-label,.letter-scene.is-open #openNote .envelope-label{opacity:0}
-/* ---- Closing letter: paper glow + float, lines reveal one by one ---- */
-.letter-scene.is-open #secretNote{animation:premiumNoteGlow 2.4s ease .8s both,premiumPaperFloat 6.5s ease-in-out 1.5s infinite}
-@keyframes premiumNoteGlow{0%{box-shadow:0 9px 25px rgba(84,45,60,.11)}50%{box-shadow:0 9px 25px rgba(84,45,60,.11),0 0 38px rgba(255,196,214,.5)}100%{box-shadow:0 9px 25px rgba(84,45,60,.11)}}
-.letter-scene.is-open #secretNote>*{animation:premiumInk .7s cubic-bezier(.2,.7,.25,1) both}
-.letter-scene.is-open #secretNote>*:nth-child(1){animation-delay:.35s}
-.letter-scene.is-open #secretNote>*:nth-child(2){animation-delay:.5s}
-.letter-scene.is-open #secretNote>*:nth-child(3){animation-delay:.65s}
-.letter-scene.is-open #secretNote>*:nth-child(4){animation-delay:.8s}
-.letter-scene.is-open #secretNote>*:nth-child(5){animation-delay:.95s}
-.letter-scene.is-open #secretNote>*:nth-child(6){animation-delay:1.1s}
-
-/* ---- All premium animation respects prefers-reduced-motion ---- */
-@media(prefers-reduced-motion:reduce){
-#gate::before,#gate::after{animation:none}
-.lobby-sparkle,.premium-float-heart{display:none!important}
-#gate .lobby-panel,#gate .gate-sign,#gate .lobby-divider,#gate .lobby-heart,#gate h1,#gate h1 em,h1 em,h2 em,.letter-sign .handwritten,.final-sign strong{animation:none!important}
-#gate .lobby-submit::after{display:none}
-.love-letter.reveal.visible>*,.letter-scene.is-open #secretNote>*,.last-letter .reveal.visible{animation:none!important}
-.love-letter.reveal.visible,.letter-scene.is-open #secretNote{animation:none!important}
-.candle::before{animation:none}
-body.premium-unlocking #gate,body.premium-unlocking #world{animation:none!important}
-.letter-scene.is-open #openNote{transition:none!important}
+/* ---------- (2) ANIMATION LAYER — lobby ---------- */
+/* the dream scene breathes on its own layer above the live background */
+#gate.gate::before {
+  content: ""; position: absolute; inset: -4%; z-index: 0; pointer-events: none;
+  background: url('assets/lobby-dream.webp') center / cover no-repeat;
+  animation: ds-kenburns 30s ease-in-out infinite alternate; will-change: transform;
 }
+@keyframes ds-kenburns { from { transform: scale(1) translateY(0); } to { transform: scale(1.09) translateY(-1.2%); } }
+/* light shimmering over the scene like waves */
+#gate.gate::after {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(38,6,52,.20), rgba(38,6,52,0) 30%, rgba(38,6,52,0) 60%, rgba(30,4,42,.26));
+  animation: ds-shimmer 7s ease-in-out infinite;
+}
+@keyframes ds-shimmer { 0%,100% { opacity: .8; } 50% { opacity: 1; } }
+/* staggered entrance */
+#gate .lobby-topbar { animation: ds-drop 1s cubic-bezier(.22,.8,.3,1) .1s both; }
+@keyframes ds-drop { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
+#gate .lobby-content > *:not(.lobby-topbar) { animation: ds-rise 1.05s cubic-bezier(.22,.8,.3,1) both; }
+#gate .lobby-divider { animation-delay: .22s; }
+#gate .eyebrow { animation-delay: .34s; }
+#gate h1 { animation-delay: .46s; }
+#gate .gate-copy { animation-delay: .58s; }
+#gate .for-saniya { animation-delay: .70s; }
+#gate .gate-sign { animation-delay: 1.05s; }
+@keyframes ds-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+/* the password panel floats in, then keeps gently floating */
+#gate .lobby-panel { animation: ds-rise 1.05s cubic-bezier(.22,.8,.3,1) .88s both, ds-floaty 7s ease-in-out 2.2s infinite; }
+@keyframes ds-floaty { 0%,100% { translate: 0 0; } 50% { translate: 0 -7px; } }
+/* hearts beat softly */
+#gate .lobby-divider { text-shadow: 0 0 10px #ff6fae; }
+#gate .lobby-topbar-love { display: inline-block; transform-origin: center; animation: ds-beat 2.4s ease-in-out .3s infinite; }
+@keyframes ds-beat { 0%,100% { transform: scale(1); } 12% { transform: scale(1.10); } 24% { transform: scale(1); } 36% { transform: scale(1.07); } 48% { transform: scale(1); } }
+/* the pink glow of "Special" and Saniya's name shimmer */
+#gate h1 em { animation: ds-glow 3.4s ease-in-out infinite; }
+@keyframes ds-glow {
+  0%,100% { text-shadow: 0 0 18px rgba(255,111,174,.55), 0 0 46px rgba(255,111,174,.30); }
+  50% { text-shadow: 0 0 30px rgba(255,111,174,.95), 0 0 70px rgba(255,111,174,.5); }
+}
+#gate .for-saniya { animation: ds-rise 1.05s cubic-bezier(.22,.8,.3,1) .70s both, ds-glow 3.4s ease-in-out .6s infinite; }
+/* the unlock button breathes with light; a sheen sweeps across it */
+#gate .lobby-submit { position: relative; overflow: hidden; animation: ds-breathe 2.8s ease-in-out infinite; }
+@keyframes ds-breathe {
+  0%,100% { box-shadow: 0 10px 26px rgba(255,92,158,.4), 0 0 18px rgba(255,111,174,.28), inset 0 1px 0 rgba(255,255,255,.67); }
+  50% { box-shadow: 0 12px 30px rgba(255,92,158,.55), 0 0 38px rgba(255,111,174,.55), inset 0 1px 0 rgba(255,255,255,.67); }
+}
+#gate .lobby-submit::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.45) 50%, transparent 70%);
+  transform: translateX(-120%); animation: ds-sheen 3.6s ease-in-out infinite;
+}
+@keyframes ds-sheen { 0%,55% { transform: translateX(-120%); } 85%,100% { transform: translateX(120%); } }
+/* rose petals drifting down + sparkles twinkling (containers added by the premium script) */
+.ds-petals, .ds-sparkles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
+.ds-petals span {
+  position: absolute; top: -6%; left: var(--x); width: 14px; height: 11px; opacity: 0;
+  background: radial-gradient(ellipse at 35% 35%, #ffd7ec, #ff9ecb 60%, #f06ba8);
+  border-radius: 80% 4px 80% 4px;
+  animation: ds-petal var(--d) linear infinite; animation-delay: var(--dl);
+}
+@keyframes ds-petal {
+  0% { transform: translate3d(0,-6vh,0) rotate(0deg) scale(var(--s,1)); opacity: 0; }
+  8% { opacity: .85; }
+  50% { transform: translate3d(var(--sw),52vh,0) rotate(190deg) scale(var(--s,1)); }
+  92% { opacity: .8; }
+  100% { transform: translate3d(calc(var(--sw) * -0.6),108vh,0) rotate(380deg) scale(var(--s,1)); opacity: 0; }
+}
+.ds-sparkles span {
+  position: absolute; left: var(--x); top: var(--y); width: 7px; height: 7px; border-radius: 50%; opacity: 0;
+  background: radial-gradient(circle, #fff 0%, #ffd7ec 45%, rgba(255,158,203,0) 72%);
+  filter: drop-shadow(0 0 6px rgba(255,170,215,.9));
+  animation: ds-twinkle var(--d) ease-in-out infinite; animation-delay: var(--dl);
+}
+.ds-sparkles span:nth-child(3n) { border-radius: 0; clip-path: polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%); }
+@keyframes ds-twinkle { 0%,100% { opacity: 0; transform: scale(.4) rotate(0deg); } 50% { opacity: 1; transform: scale(1.15) rotate(45deg); } }
+/* a burst of little hearts the moment the gift opens */
+.ds-burst-heart {
+  position: fixed; left: 50%; top: 55%; z-index: 60; pointer-events: none;
+  color: #ff9ecb; text-shadow: 0 0 12px rgba(255,110,185,.9);
+  animation: ds-burst 1.15s cubic-bezier(.17,.67,.35,1) both;
+}
+@keyframes ds-burst {
+  from { transform: translate(-50%,-50%) scale(.4) rotate(0deg); opacity: 1; }
+  to { transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.15) rotate(var(--rot)); opacity: 0; }
+}
+
+/* ---------- (2) ANIMATION LAYER — inside the site ---------- */
+/* smoother, more premium scroll reveals (the live site already fades .reveal in) */
+.reveal { transition: opacity 1.1s ease, transform 1.1s cubic-bezier(.22,.8,.3,1) !important; }
+/* photo frames lift a little under the hand */
+.polaroid { transition: transform .5s cubic-bezier(.22,.8,.3,1), box-shadow .5s ease; }
+.hero-photo:hover { transform: translateY(-6px) rotate(-.4deg); box-shadow: 0 22px 44px #612b3e30; z-index: 3; }
+/* headings breathe with a soft shimmer of light */
+.hero-title h1 em, h2 em { animation: ds-heading-glow 4.5s ease-in-out infinite; }
+@keyframes ds-heading-glow { 0%,100% { text-shadow: 0 0 0 rgba(165,72,97,0); } 50% { text-shadow: 0 0 16px rgba(165,72,97,.35); } }
+.title-spark, .cake-star { display: inline-block; animation: ds-orn 5s ease-in-out infinite; }
+@keyframes ds-orn { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-4px) rotate(10deg); } }
+.ink-heart { display: inline-block; transform-origin: center; animation: ds-beat 2.4s ease-in-out infinite; }
+/* little hearts floating up through the hero */
+.hero { position: relative; }
+.ds-float-hearts { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.ds-float-hearts span { position: absolute; bottom: -6%; color: var(--rose); opacity: 0; animation: ds-heart-rise linear infinite; }
+@keyframes ds-heart-rise {
+  0% { transform: translateY(0) rotate(-6deg); opacity: 0; }
+  12% { opacity: .45; }
+  85% { opacity: .35; }
+  100% { transform: translateY(-92vh) rotate(8deg); opacity: 0; }
+}
+/* candles: a livelier flame, a warm halo, and spark bursts when blown/relit */
+.cake .candle .flame { animation: ds-flicker 1.1s ease-in-out infinite alternate !important; }
+@keyframes ds-flicker {
+  0% { transform: scale(1) rotate(-2.5deg); }
+  25% { transform: scale(1.06,.94) rotate(1.5deg); }
+  50% { transform: scale(.95,1.07) rotate(-1deg); }
+  75% { transform: scale(1.04) rotate(2.5deg); }
+  100% { transform: scale(.98,1.03) rotate(-2deg); }
+}
+.cake .candle:not(.out) { filter: drop-shadow(0 0 7px rgba(233,172,86,.45)); }
+.ds-spark {
+  position: absolute; width: 5px; height: 5px; border-radius: 50%; pointer-events: none; z-index: 5;
+  background: radial-gradient(circle, #fff3b0, #fb8500 70%, rgba(251,133,0,0));
+  animation: ds-spark-fly .7s ease-out both;
+}
+@keyframes ds-spark-fly { from { transform: translate(-50%,0) scale(1); opacity: 1; } to { transform: translate(calc(-50% + var(--sx)), var(--sy)) scale(.3); opacity: 0; } }
+
+/* ---------- (2) ANIMATION LAYER — the love letter, premium treatment ---------- */
+/* envelope overlay (built by the premium script) covering the letter until it opens */
+.ds-envelope { position: absolute; inset: -6px; z-index: 5; pointer-events: none; perspective: 900px; }
+.ds-env-body {
+  position: absolute; inset: 0; border-radius: 6px; overflow: hidden;
+  background: linear-gradient(160deg, #fffdf9, #f7e9e9);
+  border: 1px solid #eedfe1; box-shadow: 0 12px 50px #774c6018;
+}
+.ds-env-body::before, .ds-env-body::after { content: ""; position: absolute; inset: 0; opacity: .5; }
+.ds-env-body::before { background: linear-gradient(to top right, transparent calc(50% - 1px), #dfc7cb 50%, transparent calc(50% + 1px)); }
+.ds-env-body::after { background: linear-gradient(to top left, transparent calc(50% - 1px), #dfc7cb 50%, transparent calc(50% + 1px)); }
+.ds-env-flap {
+  position: absolute; left: 0; right: 0; top: 0; height: 47%; z-index: 3;
+  background: linear-gradient(180deg, #f7e9e9, #fffdf9);
+  border-bottom: 1px solid #dfc7cb;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+}
+.ds-envelope.open .ds-env-flap { animation: ds-flap .9s cubic-bezier(.6,.05,.3,1) forwards; }
+@keyframes ds-flap { to { transform: rotateX(178deg); opacity: .35; } }
+.ds-seal { position: absolute; left: 50%; top: 47%; width: 64px; height: 64px; transform: translate(-50%,-50%); z-index: 4; }
+.ds-seal-half { position: absolute; top: 0; width: 50%; height: 100%; background: radial-gradient(circle at 65% 42%, #c98a9b, #a54861 75%); box-shadow: inset 0 2px 5px rgba(255,255,255,.35), inset 0 -4px 7px rgba(84,45,60,.35); }
+.ds-seal-half.l { left: 0; border-radius: 32px 0 0 32px; }
+.ds-seal-half.r { right: 0; border-radius: 0 32px 32px 0; background: radial-gradient(circle at 35% 42%, #c98a9b, #a54861 75%); }
+.ds-seal .ds-heart-mark { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; font-size: 26px; color: #fffdf9; }
+.ds-envelope.break .ds-seal { animation: ds-seal-pulse .45s ease-in both; }
+@keyframes ds-seal-pulse { 40% { transform: translate(-50%,-50%) scale(1.12); } 100% { transform: translate(-50%,-50%) scale(1.05); } }
+.ds-envelope.open .ds-seal-half.l { animation: ds-seal-l .7s cubic-bezier(.5,0,.3,1) forwards; }
+.ds-envelope.open .ds-seal-half.r { animation: ds-seal-r .7s cubic-bezier(.5,0,.3,1) forwards; }
+.ds-envelope.open .ds-seal .ds-heart-mark { animation: ds-seal-heart .7s ease forwards; }
+@keyframes ds-seal-l { to { transform: translateX(-17px) rotate(-16deg); opacity: 0; } }
+@keyframes ds-seal-r { to { transform: translateX(17px) rotate(16deg); opacity: 0; } }
+@keyframes ds-seal-heart { to { transform: scale(1.7); opacity: 0; } }
+.ds-envelope.gone { animation: ds-env-gone 1s cubic-bezier(.4,0,.3,1) forwards; }
+@keyframes ds-env-gone { to { opacity: 0; transform: translateY(26px) scale(.985); } }
+/* the paper slides and unfolds out of the envelope */
+.love-letter.ds-out { animation: ds-paper-out 1.25s cubic-bezier(.22,.8,.3,1) both; transform-origin: top center; }
+@keyframes ds-paper-out { from { transform: translateY(36px) rotateX(11deg); } to { transform: translateY(0) rotate(1.4deg); } }
+/* once open, the paper breathes with a warm glow */
+.love-letter.ds-revealed { animation: ds-paper-glow 6s ease-in-out infinite; }
+@keyframes ds-paper-glow {
+  0%,100% { box-shadow: 0 12px 50px #774c6010; }
+  50% { box-shadow: 0 18px 55px rgba(165,72,97,.22), 0 0 34px rgba(165,72,97,.12); }
+}
+.love-letter.ds-revealed .letter-sign .handwritten { animation: ds-heading-glow 4.5s ease-in-out infinite; }
+/* lines appear like ink settling on paper, one by one */
+.love-letter > *.ds-ink { opacity: 0; transform: translateY(14px); filter: blur(4px); transition: opacity .85s ease, transform .85s cubic-bezier(.22,.8,.3,1), filter .85s ease; transition-delay: var(--rd, 0s); }
+.love-letter > *.ds-ink.ds-ink-in { opacity: 1; transform: none; filter: blur(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  #gate.gate::before, #gate.gate::after, #gate .lobby-topbar, #gate .lobby-content > *,
+  #gate .lobby-panel, #gate .lobby-topbar-love, #gate h1 em, #gate .for-saniya,
+  #gate .lobby-submit, #gate .lobby-submit::after, .ds-burst-heart,
+  .hero-title h1 em, h2 em, .title-spark, .cake-star, .ink-heart,
+  .cake .candle .flame, .love-letter.ds-revealed { animation: none !important; }
+  .ds-petals, .ds-sparkles, .ds-float-hearts, .ds-envelope { display: none !important; }
+  .love-letter > *.ds-ink { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; }
+}
+
